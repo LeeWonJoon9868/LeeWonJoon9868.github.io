@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes">
+  <meta property="og:title" content="MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes">
+  <meta property="og:description" content="MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes">
+  <meta property="og:type" content="website">
+  <meta name="keywords" content="prodepth">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G62L2JMGEW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-G62L2JMGEW');
+  </script>
+  <!-- Google tag (gtag.js) -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/twentytwenty.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <link rel="stylesheet" href="./static/css/glide.core.min.css">
+  <link rel="stylesheet" href="./static/css/glide.theme.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/jquery-3.2.1.min.js"></script>
+  <script src="./static/js/jquery.event.move.js"></script>
+  <script src="./static/js/jquery.twentytwenty.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/handlers.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
+  <script src="./static/js/glide.min.js"></script>
+
+  <script>
+      window.onload = function() {
+        new Glide("#dynamic-carousel", {
+          type: "carousel",
+          perView: 1.68,
+          focusAt: "center",
+          autoplay: 3000,
+          hoverpause: true
+        }).mount();
+        new Glide("#static-carousel", {
+          type: "carousel",
+          perView: 1.68,
+          focusAt: "center",
+          autoplay: 3000,
+          hoverpause: true
+        }).mount();
+        new Glide("#realtime-carousel", {
+          type: "carousel",
+          perView: 2.05,
+          focusAt: "center",
+          autoplay: 3000,
+          hoverpause: true
+        }).mount();
+      };
+      </script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RZ6PES7EKD');
+        </script>
+
+
+</head>
+<body>
+
+
+<!-- Title/Authors/Institutions/Links -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Title -->
+          <h1 class="title is-2 publication-title">MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes</h1>
+          <h2 class="title is-size-3">CVPR 2026</h2>
+          <!-- Title -->
+          
+          <!-- Authors -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://leewonjoon9868.github.io/">Wonjoon Lee</a></span><sup>1</sup>,
+            <span class="author-block">
+              <a href="https://sungmin-woo.github.io">Sungmin Woo</a></span><sup>1</sup>,
+            <span class="author-block">
+              Donghyeong Kim</span><sup>1</sup>,
+            <span class="author-block">
+              <a href="https://jho-yonsei.github.io/">Jungho Lee</a></span><sup>1</sup>,
+            <span class="author-block">
+              Sangheon Park</span><sup>1,2</sup>,
+            <span class="author-block">
+              Sangyoun Lee</span><sup>1</sup>
+          </div>
+          <!-- Authors -->
+          
+          <!-- Institutions -->
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              Yonsei University<sup>1</sup>
+            </span>
+            <br>
+            <span class="author-block">
+              Electronics and Telecommunications Research Institute (ETRI)<sup>2</sup>
+            </span>
+          </div>
+          <!-- Institutions -->
+
+          <!-- PDF Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2603.25042"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Comming Soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Comming Soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+          <!-- PDF Links -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Title/Authors/Institutions/Links -->
+
+
+<!-- Teaser Image -->
+<section class="hero teaser">
+  <div class="container">
+    <div class="hero-body">
+
+      <!-- PDF를 이미지로 변환해서 넣기 -->
+      <img src="./static/images/teaser.png" width="100%">
+
+      <h2 class="subtitle has-text-centered">
+        MoRGS enables streamable dynamic scene reconstruction by explicitly modeling per-Gaussian motion with sparse optical flow supervision, achieving improved rendering quality and motion fidelity over prior online methods.
+      </h2>
+
+    </div>
+  </div>
+</section>
+<!-- Teaser Image -->
+
+
+<!-- Main Body -->
+<section class="section">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Online reconstruction of dynamic scenes aims to learn from streaming multi-view inputs under low-latency constraints. The fast training and real-time rendering capabilities of 3D Gaussian Splatting have made on-the-fly reconstruction practically feasible, enabling online 4D reconstruction. However, existing online approaches, despite their efficiency and visual quality, fail to learn per-Gaussian motion that reflects true scene dynamics. Without explicit motion cues, appearance and motion are optimized solely under photometric loss, causing per-Gaussian motion to chase pixel residuals rather than true 3D motion. To address this, we propose MoRGS, an efficient online per-Gaussian motion reasoning framework that explicitly models per-Gaussian motion to improve 4D reconstruction quality. Specifically, we leverage optical flow on a sparse set of key views as lightweight motion cues that regularize per-Gaussian motion beyond photometric supervision. To compensate for the sparsity of flow supervision, we learn a per-Gaussian motion offset field that reconciles discrepancies between projected 3D motion and observed flow across views and time. In addition, we introduce a per-Gaussian motion confidence that separates dynamic from static Gaussians and weights Gaussian attribute residual updates, thereby suppressing redundant motion in static regions for better temporal consistency and accelerating the modeling of large motions. Extensive experiments demonstrate that MoRGS achieves state-of-the-art reconstruction quality and motion fidelity among online methods, while maintaining streamable performance.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract -->
+
+    &nbsp;
+
+    <!-- Methodology -->
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered">Approach</h2>
+        <img class="architecture" src="./static/images/main.png" alt="">
+        <div class="content has-text-justified">
+          <p>
+        Our approach incrementally updates Gaussian attributes while explicitly modeling per-Gaussian motion using sparse motion cues. A motion offset field compensates for discrepancies, and a learned motion confidence from view-consistent masks suppresses static regions and focuses learning on dynamic motions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Methodology -->
+    &nbsp;
+  </div>
+</section>
+
+
+
+
+<!-- Comparison -->
+<section class="hero">
+  <div class="hero-body">
+
+    <div class="container is-max-desktop">
+
+      <!-- 제목 -->
+      <div class="has-text-centered mb-5">
+        <h2 class="title is-3">Comparison with State-of-the-Arts</h2>
+      </div>
+
+      <!-- 🔥 1st row -->
+      <div style="transform:scale(0.3); display:flex; justify-content:center; gap:40px; margin-bottom:-550px; margin-top:-350px;">
+
+        <div class="video-compare-container">
+          <video id="compare1" muted playsinline loop autoplay
+            src="./static/videos/vis/cm.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare1Merge"></canvas>
+        </div>
+
+        <div class="video-compare-container">
+          <video id="compare2" muted playsinline loop autoplay
+            src="./static/videos/vis/cs.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare2Merge"></canvas>
+        </div>
+
+        <div class="video-compare-container">
+          <video id="compare3" muted playsinline loop autoplay
+            src="./static/videos/vis/fs.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare3Merge"></canvas>
+        </div>
+
+      </div>
+
+      <!-- 🔥 2nd row -->
+      <div style="transform:scale(0.3); display:flex; justify-content:center; gap:80px; margin-top:0; margin-bottom:-300px;">
+
+        <div class="video-compare-container">
+          <video id="compare4" muted playsinline loop autoplay
+            src="./static/videos/vis/hs.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare4Merge"></canvas>
+        </div>
+
+        <div class="video-compare-container">
+          <video id="compare5" muted playsinline loop autoplay
+            src="./static/videos/vis/dis.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare5Merge"></canvas>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- Comparison -->
+<section class="hero ">
+  <div class="hero-body">
+
+    <div class="container is-max-desktop">
+
+      <!-- 제목 -->
+      <div class="has-text-centered mb-5">
+        <h2 class="title is-3">Gaussian Motion Visualization</h2>
+      </div>
+
+      <!-- 🔥 1st row -->
+      <div style="transform:scale(0.3); display:flex; justify-content:center; gap:80px; margin-bottom:-550px; margin-top:-350px;align-items:center;">
+
+        <div class="video-compare-container">
+          <video id="compare6" muted playsinline loop autoplay
+            src="./static/videos/motion/cm.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare6Merge"></canvas>
+        </div>
+
+        <div class="video-compare-container">
+          <video id="compare7" muted playsinline loop autoplay
+            src="./static/videos/motion/cs.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare7Merge"></canvas>
+        </div>
+
+        <div class="video-compare-container">
+          <video id="compare8" muted playsinline loop autoplay
+            src="./static/videos/motion/dis.mp4"
+            onplay="resizeAndPlay(this)"></video>
+          <canvas id="compare8Merge"></canvas>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX" style="margin-top: 200px;">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">BibTeX</h2>
+        <pre><code>@misc{2603.25042,
+Author = {Wonjoon Lee and Sungmin Woo and Donghyeong Kim and Jungho Lee and Sangheon Park and Sangyoun Lee},
+Title = {MoRGS: Efficient Per-Gaussian Motion Reasoning for Streamable Dynamic 3D Scenes},
+Year = {2026},
+Eprint = {arXiv:2603.25042},
+}</code></pre>
+</div>
+    </div>
+  </div>
+</section>
+<!-- BibTeX -->
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/sungmin-woo/ProDepth" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion">
+  <meta property="og:title" content="ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion">
+  <meta property="og:description" content="ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion">
+  <meta property="og:type" content="website">
+  <meta name="keywords" content="prodepth">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G62L2JMGEW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    
+    function gtag(){
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-G62L2JMGEW');
+  </script>
+  <!-- Google tag (gtag.js) -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/twentytwenty.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/jquery-3.2.1.min.js"></script>
+  <script src="./static/js/jquery.event.move.js"></script>
+  <script src="./static/js/jquery.twentytwenty.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<!-- Title/Authors/Institutions/Links -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Title -->
+          <h1 class="title is-2 publication-title">ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion</h1>
+          <h2 class="title is-size-3">ECCV 2024</h2>
+          <!-- Title -->
+          
+          <!-- Authors -->
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">
+              <a href="https://sungmin-woo.github.io">Sungmin Woo</a>*,</span>
+            <span class="author-block">
+              Wonjoon Lee*,</span>
+            <span class="author-block">
+              Woojin Kim,</span>
+            <span class="author-block">
+              <a href="https://dogyoonlee.github.io">Dogyoon Lee</a>,</span>
+            <span class="author-block">
+              Sangyoun Lee</span>
+          </div>
+          <!-- Authors -->
+          
+          <!-- Institutions -->
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">Yonsei University</span>
+          </div>
+          <!-- Institutions -->
+
+          <!-- PDF Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2407.09303"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2407.09303"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=StMkD9biNc8"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/sungmin-woo/ProDepth"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+          <!-- PDF Links -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Title/Authors/Institutions/Links -->
+
+
+<!-- Teaser Videos -->
+<section class="hero teaser">
+  <div class="container"> 
+    <div class="hero-body">
+      <video id="teaser4" autoplay muted loop playsinline width="100%" poster="static/images/teaser4.png" preload="auto">
+        <source src="./static/videos/teaser4.mp4" type="video/mp4">
+      </video>
+      <video id="teaser1" autoplay muted loop playsinline width="100%" poster="static/images/teaser1.png" preload="auto">
+        <source src="./static/videos/teaser1.mp4" type="video/mp4">
+      </video>
+      <video id="teaser2" autoplay muted loop playsinline width="100%" poster="static/images/teaser2.png" preload="auto">
+        <source src="./static/videos/teaser2.mp4" type="video/mp4">
+      </video>
+      <video id="teaser3" autoplay muted loop playsinline width="100%" poster="static/images/teaser3.png" preload="auto">
+        <source src="./static/videos/teaser3.mp4" type="video/mp4">
+      </video>
+      <video id="teaser5" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+        <source src="./static/videos/teaser5.mp4" type="video/mp4">
+      </video>
+      <img class="labels" src="./static/images/labels.png">
+      <h2 class="subtitle has-text-centered">ProDepth performs uncertainty-aware adaptive fusion of the depth probability distributions from both single-frame and multi-frame cues. The uncertainty indicates the probability of dynamic pixels.</h2>
+    </div>
+  </div>
+</section>
+<!-- Teaser Videos -->
+
+
+<!-- Main Body -->
+<section class="section">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Self-supervised multi-frame monocular depth estimation relies on the geometric consistency between successive frames under the
+assumption of a static scene. However, the presence of moving objects
+in dynamic scenes introduces inevitable inconsistencies, causing misaligned multi-frame feature matching and misleading self-supervision
+during training. 
+          </p>
+          <p>
+            In this paper, we propose a novel framework called
+ProDepth, which effectively addresses the mismatch problem caused by
+dynamic objects using a probabilistic approach. We initially deduce the
+uncertainty associated with static scene assumption by adopting an auxiliary decoder. This decoder analyzes inconsistencies embedded in the
+cost volume, inferring the probability of areas being dynamic. We then
+directly rectify the erroneous cost volume for dynamic areas through a
+Probabilistic Cost Volume Modulation (PCVM) module. Specifically, we
+derive probability distributions of depth candidates from both singleframe and multi-frame cues, modulating the cost volume by adaptively
+fusing those distributions based on the inferred uncertainty. Additionally, we present a self-supervision loss reweighting strategy that not only
+masks out incorrect supervision with high uncertainty but also mitigates
+the risks in remaining possible dynamic areas in accordance with the
+probability. Our proposed method excels over state-of-the-art approaches
+in all metrics on both Cityscapes and KITTI datasets, and demonstrates
+superior generalization ability on the Waymo Open dataset.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract -->
+
+    &nbsp;
+
+    <!-- Methodology -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Methodology</h2>
+        <img class="architecture" src="./static/images/Figure2.png" alt="">
+        <h2 class="subtitle has-text-centered">
+          An overview of the proposed ProDepth.
+        </h2>
+      </div>
+    </div>
+    <!--/ Methodology -->
+
+    &nbsp;
+
+    <!-- Paper video --> <!--
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video -->
+  </div>
+</section>
+<!-- Main Body -->
+
+
+<!-- Results -->
+
+
+<!-- Slide -->
+<section class="hero is-light is-small mt-4">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-three-fifths">
+          <h2 class="title is-3">Depth and Error Maps</h2>
+          <p class="subtitle has-text-centered">
+            Error maps depict large depth errors in red and small in blue.
+          </p>
+        </div>
+      </div>
+
+
+      
+      <div id="results-carousel-horizontal" class="carousel results-carousel">
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis1.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis4.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis2.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis3.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis5.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis8.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis6.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis7.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis49.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis52.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis50.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis51.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis13.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis16.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis14.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis15.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis17.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis20.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis18.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis19.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis21.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis24.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis22.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis23.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis25.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis28.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis26.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis27.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis29.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis32.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis30.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis31.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis33.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis36.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis34.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis35.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis37.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis40.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis38.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis39.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis41.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis44.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis42.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis43.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis45.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis48.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis46.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis47.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis9.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis12.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis10.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis11.jpg">
+            </div>
+          </div>
+        </div>
+
+        <div class="twoitem">
+          <div class="twentytwenty-container twentytwenty-container-top">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis53.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis56.jpg">
+            </div>
+          </div>
+          <div class="twentytwenty-container twentytwenty-container-bottom">
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis54.jpg">
+            </div>
+            <div class="cmpcontent">
+              <img src="./static/images/cityscapes/vis55.jpg">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Dynamic -->
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+        <div class="column is-three-fifths">
+          <h2 class="title is-3">Identification of Dynamic Areas</h2>
+        </div>
+      </div>
+
+    <video id="g1" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g1.mp4" type="video/mp4">
+    </video>
+    <video id="g2" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g2.mp4" type="video/mp4">
+    </video>
+    <video id="g3" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g3.mp4" type="video/mp4">
+    </video>
+    <video id="g5" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g5.mp4" type="video/mp4">
+    </video>
+    <video id="g6" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g6.mp4" type="video/mp4">
+    </video>
+    <video id="g7" autoplay muted loop playsinline width="100%" poster="static/images/teaser5.png" preload="auto">
+      <source src="./static/videos/g7.mp4" type="video/mp4">
+    </video>
+    <img class="labels" src="./static/images/labels2.png">
+
+    <h2 class="subtitle has-text-centered">
+          Without using additional semantic information, ProDepth identifies the dynamic areas as a probabilistic representation.
+        </h2>
+
+    <div style="margin-bottom: 70px;"></div>
+
+  </div>
+</section>
+<!-- Results -->
+
+<!-- Quantitative Results -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <img class="architecture" src="./static/images/performance.png" alt="">
+        <h2 class="subtitle has-text-centered">
+          Quantitative comparison of ProDepth with SOTA self-supervised depth estimtators on KITTI and Cityscapes datasets.
+        </h2>
+      </div>
+    </div>
+<!-- Quantitative Results -->
+
+  
+<script>
+  $(window).on('load', function() {
+    bulmaCarousel.attach('#results-carousel-horizontal', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      autoplay: true,
+    });
+
+    $(".twentytwenty-container-top").twentytwenty({
+      before_label: 'Input',
+      after_label: 'Ours',
+      default_offset_pct: 0.75,
+    });
+
+    $(".twentytwenty-container-bottom").twentytwenty({
+      before_label: 'ManyDepth',
+      after_label: 'Ours',
+      default_offset_pct: 0.5,
+    });
+
+    $('.results-carousel').css({
+      'max-height': '2000px',
+      'visibility': 'visible'
+    });
+  });
+</script>
+
+  
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container">
+    <!-- Abstract -->
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">BibTeX</h2>
+        <pre><code>@article{woo2024prodepth,
+  title={ProDepth: Boosting Self-Supervised Multi-Frame Monocular Depth with Probabilistic Fusion},
+  author={Woo, Sungmin and Lee, Wonjoon and Kim, Woo Jin and Lee, Dogyoon and Lee, Sangyoun},
+  journal={arXiv preprint arXiv:2407.09303},
+  year={2024}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- BibTeX -->
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/sungmin-woo/ProDepth" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->
+
+
+</body>
+</html>
